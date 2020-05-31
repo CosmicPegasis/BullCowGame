@@ -14,12 +14,15 @@ class BullCowGame:
         self.bulls = 0
         self.cows = 0
 
+        self.turn = 1
+
     # Print introduction
     def intro(self):
         print('Hello! Welcome to the Bull Cow Game!')
 
     # Ask the question and record the input
     def question(self):
+        print('Try:', self.turn)
         self.input = input('Guess the ' + str(self.word_length)
                            + ' letter isogram: ')
 
@@ -42,7 +45,8 @@ class BullCowGame:
         print('Cows:', self.cows)
 
     # Increment the number of turns
-    
+    def incr_turn(self):
+        self.turn += 1
     #  Display whether the player won or lost
 
     # Game
@@ -52,6 +56,7 @@ class BullCowGame:
             self.question()
             self.check_ans()
             self.answer_results()
+            self.incr_turn()
 
     # Main
     def main(self):
