@@ -11,6 +11,9 @@ class BullCowGame:
         self.word_length = self.settings.word_length
         self.word = self.settings.word
 
+        self.bulls = 0
+        self.cows = 0
+
     # Print introduction
     def intro(self):
         print('Hello! Welcome to the Bull Cow Game!')
@@ -21,17 +24,39 @@ class BullCowGame:
                            + ' letter isogram: ')
 
     # Match the input with the answer
+    def check_ans(self):
+
+        # Match every letter in answer with every letter in word
+        for a_letter in self.input:
+            for w_letter in self.word:
+                if a_letter == w_letter and \
+                   self.input.index(a_letter) == self.word.index(w_letter):
+                    self.bulls += 1
+
+                elif a_letter == w_letter:
+                    self.cows += 1
 
     # Display Bulls and Cows
+    def answer_results(self):
+        print('Bulls:', self.bulls)
+        print('Cows:', self.cows)
 
     # Increment the number of turns
-
+    
     #  Display whether the player won or lost
+
+    # Game
+    def play_game(self):
+        for t in range(self.turns):
+            print('\n')
+            self.question()
+            self.check_ans()
+            self.answer_results()
 
     # Main
     def main(self):
         self.intro()
-        self.question()
+        self.play_game()
 
 game = BullCowGame()
 game.main()
