@@ -16,6 +16,8 @@ class BullCowGame:
 
         self.turn = 1
 
+        self.running_game = True
+
     # Print introduction
     def intro(self):
         print('Hello! Welcome to the Bull Cow Game!')
@@ -44,10 +46,18 @@ class BullCowGame:
         print('Bulls:', self.bulls)
         print('Cows:', self.cows)
 
-    # Increment the number of turns
-    def incr_turn(self):
+    # End of turn maintenance
+    def end_turn(self):
         self.turn += 1
-    #  Display whether the player won or lost
+        self.bulls = 0
+        self.cows = 0
+
+    def win_or_lose(self):
+        if self.bulls == self.word_length and self.turn <= self.turns:
+            print('You Won!')
+            return self.turns + 1 
+        
+    # TODO AntiCheat
 
     # Game
     def play_game(self):
@@ -56,8 +66,14 @@ class BullCowGame:
             self.question()
             self.check_ans()
             self.answer_results()
-            self.incr_turn()
+            if self.bulls == self.word_length and self.turn <= self.turns:
+                print('You Won!')
+                break
+            self.end_turn()
 
+        else:
+            print('Sorry, you lost.')
+            self.running_game = False
     # Main
     def main(self):
         self.intro()
