@@ -17,6 +17,7 @@ class BullCowGame:
         self.turn = 1
 
         self.running_game = True
+        self.cheating = False
 
     # Print introduction
     def intro(self):
@@ -55,29 +56,39 @@ class BullCowGame:
     def win_or_lose(self):
         if self.bulls == self.word_length and self.turn <= self.turns:
             print('You Won!')
-            return self.turns + 1 
-        
+            return self.turns + 1
+
     # TODO AntiCheat
+    def anticheat(self):
+        if len(self.input) != self.word_length:
+            print('Your answer isn\'t of', self.word_length, 'letters')
+            self.cheating = True
 
     # Game
     def play_game(self):
         for t in range(self.turns):
             print('\n')
             self.question()
-            self.check_ans()
-            self.answer_results()
-            if self.bulls == self.word_length and self.turn <= self.turns:
-                print('You Won!')
-                break
-            self.end_turn()
+            self.anticheat()
+            if self.cheating is False:
+                self.check_ans()
+                self.answer_results()
+                if self.bulls == self.word_length and self.turn <= self.turns:
+                    print('You Won!')
+                    break
+                self.end_turn()
+            else:
+                print('Sorry, your answer isn\'t of', self.word_length, 'letters')
 
         else:
             print('Sorry, you lost.')
             self.running_game = False
+
     # Main
     def main(self):
         self.intro()
         self.play_game()
+
 
 game = BullCowGame()
 game.main()
