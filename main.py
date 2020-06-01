@@ -58,17 +58,17 @@ class BullCowGame:
             print('You Won!')
             return self.turns + 1
 
-    # TODO AntiCheat
+    # AntiCheat
     def anticheat(self):
         if len(self.input) != self.word_length:
-            print('Your answer isn\'t of', self.word_length, 'letters')
             self.cheating = True
 
     # Game
     def play_game(self):
-        for t in range(self.turns):
+        t = 0
+        while t in range(self.turns):
             print('\n')
-            self.question()
+           eaself.question()
             self.anticheat()
             if self.cheating is False:
                 self.check_ans()
@@ -77,8 +77,10 @@ class BullCowGame:
                     print('You Won!')
                     break
                 self.end_turn()
+                t += 1
             else:
-                print('Sorry, your answer isn\'t of', self.word_length, 'letters')
+                print('Sorry, your answer isn\'t of'
+                      , self.word_length, 'letters')
 
         else:
             print('Sorry, you lost.')
@@ -92,3 +94,4 @@ class BullCowGame:
 
 game = BullCowGame()
 game.main()
+
