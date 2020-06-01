@@ -10,6 +10,7 @@ class BullCowGame:
         self.turns = self.settings.turns
         self.word_length = self.settings.word_length
         self.word = self.settings.word
+        self.isogram = True
 
         self.bulls = 0
         self.cows = 0
@@ -58,6 +59,17 @@ class BullCowGame:
             print('You Won!')
             return self.turns + 1
 
+    # Check if it's an isogram
+    def check_isogram(self):
+        for letter in self.input:
+            repetition = 0
+            for a in self.input:
+                if letter == a:
+                    repetition += 1
+
+                if repetition > 1:
+                    self.isogram =  False
+
     # AntiCheat
     def anticheat(self):
         if len(self.input) != self.word_length:
@@ -68,20 +80,25 @@ class BullCowGame:
         t = 0
         while t in range(self.turns):
             print('\n')
-           eaself.question()
+            self.question()
             self.anticheat()
-            if self.cheating is False:
-                self.check_ans()
-                self.answer_results()
-                if self.bulls == self.word_length and self.turn <= self.turns:
-                    print('You Won!')
-                    break
-                self.end_turn()
-                t += 1
-            else:
-                print('Sorry, your answer isn\'t of'
-                      , self.word_length, 'letters')
+            self.check_isogram()
+            if self.isogram is True:
+                if self.cheating is False:
+                    self.check_ans()
+                    self.answer_results()
+                    if self.bulls == self.word_length \
+                            and self.turn <= self.turns:
+                        print('You Won!')
+                        break
+                    self.end_turn()
+                    t += 1
+                else:
+                    print('Sorry, your answer isn\'t of',
+                          self.word_length, 'letters')
 
+            else:
+                print('Sorry, your answer is not an isogram')
         else:
             print('Sorry, you lost.')
             self.running_game = False
@@ -94,4 +111,3 @@ class BullCowGame:
 
 game = BullCowGame()
 game.main()
-
