@@ -6,7 +6,7 @@ Cows means the number of letter which are in the word but not
 in the correct place
 
 All settings such as number of turns, the word etc. can be changed from
-settings.py""""
+settings.py"""
 
 from settings import Settings
 
