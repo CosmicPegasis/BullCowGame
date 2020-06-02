@@ -68,7 +68,7 @@ class BullCowGame:
                     repetition += 1
 
                 if repetition > 1:
-                    self.isogram =  False
+                    self.isogram = False
 
     # AntiCheat
     def anticheat(self):
@@ -83,8 +83,8 @@ class BullCowGame:
             self.question()
             self.anticheat()
             self.check_isogram()
-            if self.isogram is True:
-                if self.cheating is False:
+            if self.cheating is False:
+                if self.isogram is True:
                     self.check_ans()
                     self.answer_results()
                     if self.bulls == self.word_length \
@@ -94,19 +94,30 @@ class BullCowGame:
                     self.end_turn()
                     t += 1
                 else:
-                    print('Sorry, your answer isn\'t of',
-                          self.word_length, 'letters')
-
+                    print('Sorry, your answer is not an isogram')
             else:
-                print('Sorry, your answer is not an isogram')
+                print('Sorry, your answer isn\'t of',
+                      self.word_length, 'letters')
+
         else:
             print('Sorry, you lost.')
+
+    #Play Again
+    def play_again(self):
+        response = input('Want to play again?(y/n)')
+        if response.lower() == 'n':
             self.running_game = False
+
+        else:
+            print('\n')
+            self.turn = 1
 
     # Main
     def main(self):
-        self.intro()
-        self.play_game()
+        while self.running_game is True:
+            self.intro()
+            self.play_game()
+            self.play_again()
 
 
 game = BullCowGame()
