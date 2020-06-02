@@ -1,3 +1,13 @@
+"""This is called the BullCowGame. This is a simple
+word guessing game. In this you have to guess the word which is
+of given letters.
+Bulls means the number of letters which are in the word and in correct place
+Cows means the number of letter which are in the word but not
+in the correct place
+
+All settings such as number of turns, the word etc. can be changed from
+settings.py""""
+
 from settings import Settings
 
 
@@ -102,7 +112,7 @@ class BullCowGame:
         else:
             print('Sorry, you lost.')
 
-    #Play Again
+    # Play Again
     def play_again(self):
         response = input('Want to play again?(y/n)')
         if response.lower() == 'n':
